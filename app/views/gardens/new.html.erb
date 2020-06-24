@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h1>Add a Garden</h1>
+      <%= simple_form_for @garden do |f| %>
+        <%= f.input :name %>
+        <%= f.input :banner_url %>
+        <%= f.submit "Add a garden", class:"btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

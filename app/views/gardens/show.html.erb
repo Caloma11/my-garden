@@ -1,0 +1,52 @@
+<% if flash[:success] %>
+  <h1><%= flash[:success] %></h1>
+<% elsif flash[:alert] %>
+  <h1><%= flash[:alert] %></h1>
+<% end %>
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(<%= @garden.banner_url %>);">
+  <div class="container">
+    <h1><%= @garden.name %></h1>
+  </div>
+</div>
+
+
+<div class="container py-5">
+  <div class="row">
+    <% @plants.each do |plant| %>
+    <div class="col-md-4 mb-3">
+      <%= link_to plant_path(plant), class:'card-link' do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= plant.image_url %>)">
+          <%= plant.name %>
+        </div>
+      <% end %>
+      <%= link_to 'Destroy', plant_path(plant), method: :delete %>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <h1>Add a Plant</h1>
+      <%= simple_form_for [@garden, @plant] do |f| %>
+        <%= f.input :name %>
+        <%= f.input :image_url %>
+        <%= f.submit "Create", class: "btn btn-primary" %>
+      <% end %>
+
+      <!-- <form action="/gardens/<%= @garden.id %>/plants" method="POST" >
+          TOKEN
+        <label>Name</label>
+        <input type="text" name="name">
+        <label>Image Url</label>
+        <input type="text" name="image_url">
+        <button>Create</button>
+      </form>-->
+    </div>
+  </div>
+</div>
+
+<%= link_to "See all the gardens", root_path, class: 'btn btn-secondary' %>
