@@ -15,3 +15,15 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+
+// THIS IS WRONG
+// import multipleSelect from '../components/select.js';
+
+// THIS IS RIGHT
+import { multipleSelect } from '../components/select.js';
+
+
+window.addEventListener('turbolinks:load', (e) => {
+  multipleSelect();
+})
